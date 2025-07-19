@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if name %}Result{% else %}Pneumonia Detection{% endif %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  
+  <body>
+    <header class="top-header">
+      <div class="container">
+        <h1>Pneumonia Detection</h1>
+        <p>AI-Powered Medical Image Analysis</p>
+      </div>
+    </header>
+
+    <main class="container">
+      {% if name %}
+      <!-- Results Page -->
+      <div class="result-container">
+        <h2>Analysis Results</h2>
+        
+        <div class="image-container">
+          <img 
+            src="static/uploads/{{ name }}" 
+            alt="Uploaded X-ray: {{ name }}"
+            class="image-class"
+          />
+        </div>
+
+        <div class="diagnosis-section">
+          {% if result == 1 %}
+          <div class="status-error">
+            <h3>PNEUMONIA DETECTED</h3>
+            <p>Please consult with a healthcare professional for proper medical evaluation.</p>
+          </div>
+          {% else %}
+          <div class="status-success">
+            <h3>NORMAL RESULT</h3>
+            <p>No signs of pneumonia detected in the analysis.</p>
+          </div>
+          {% endif %}
+        </div>
+
+        <form action="{{ url_for('home') }}">
+          <button type="submit" class="button-class">Analyze Another Image</button>
+        </form>
+      </div>
+
+      {% else %}
+      <!-- Upload Form -->
+      <div class="form-class">
+        <h2 class="form-title">Upload Chest X-Ray</h2>
+        
+        <form 
+          action="{{ url_for('home') }}" 
+          method="POST" 
+          enctype="multipart/form-data"
+        >
+          <div class="input-group">
+            <label for="imageFile" class="input-label">Select X-Ray Image</label>
+            <input 
+              type="file" 
+              name="imageFile" 
+              id="imageFile"
+              class="upload-class"
+              accept=".jpg,.jpeg,.png,.bmp,.tiff"
+              required
+            />
+          </div>
+          
+          <button type="submit" class="button-class">Analyze Image</button>
+        </form>
+      </div>
+      {% endif %}
+    </main>
+  </body>
+</html>
