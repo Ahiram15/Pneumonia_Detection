@@ -72,11 +72,11 @@ To use the pneumonia detection web application:
     python app.py
     ```
 3.  Open your web browser and navigate to `http://127.0.0.1:5000/` (or the address displayed in your terminal).
-4.  Upload a chest X-ray image to get a prediction.
+4.  Upload a chest X-ray image to get a prediction.You can also use the sample test images provided in the `test_images/`
 
 ## Results
 
-The model achieves [mention accuracy, precision, recall, F1-score if available] on the test set. A `model_plot.png` file visualizes the model's training history (e.g., accuracy and loss over epochs).
+The model achieves [90.87% accuracy, 90% precision, 90% recall, 90% F1-score] on the test set. A `model_plot.png` file visualizes the model's training history (e.g., accuracy and loss over epochs).
 
 ## Technologies Used
 
@@ -87,5 +87,3 @@ The model achieves [mention accuracy, precision, recall, F1-score if available] 
 * Pandas
 * Matplotlib (for plotting)
 * Jupyter Notebook
-
-
